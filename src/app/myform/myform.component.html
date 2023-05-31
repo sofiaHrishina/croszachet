@@ -1,0 +1,32 @@
+<form [formGroup]="matrixForm" (ngSubmit)="onSubmit()">
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Матриця </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">N:</ion-label>
+      <ion-input id="matrix-n" type="number" formControlName="matrixN" #Inputn></ion-input>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+<ion-button type="submit" color="my-color" expand="block" fill="outline" [disabled]="!matrixForm.valid">
+  Підтвердити
+</ion-button>
+<ion-item>
+  <ion-button expand="block" (click)="create_matrix(matrixForm.controls['matrixN'].value)">Сформувати масив</ion-button>
+</ion-item>
+<ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let row of calculation.a; let rowIndex=index">
+      <ion-col *ngFor="let number of row; let colIndex=index" >{{number}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
+<ion-item *ngIf="result">
+  <p>This matrix is a magic square.</p>
+</ion-item>
+<ion-item *ngIf="!result">
+  <p>This matrix is not a magic square.</p>
+</ion-item>
+</form>
